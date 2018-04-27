@@ -7,7 +7,6 @@ public class InputManager : MonoBehaviour {
     public GameObject Target;
     public float x, y, z, roll, pitch, yaw;
 
-
     public void rotRoll(string input)
     {
         roll = float.Parse(input) / (180 / Mathf.PI);

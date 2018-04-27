@@ -92,6 +92,22 @@ public class VectorMaths
         return D;
     }
 
+    public static Vector3 RotateVertexAroundAxis(float Angle, Vector3 Axis, Vector3 Vertex)
+    {
+        Vector3 rv = (Vertex * Mathf.Cos(Angle)) +
+            Dot(Vertex, Axis) * Axis * (1 - Mathf.Cos(Angle)) +
+            CrossProduct(Axis, Vertex) * Mathf.Sin(Angle);
+        return rv;
+    }
+
+    public static Vector3 RotateByQuat(Vector3 A, Quat B)
+    {
+        Quat C = new Quat(0, A.x, A.y, A.z);
+        Quat newC = B * C * Quat.Inverse(B);
+        Vector3 D = new Vector3(newC.x, newC.y, newC.z);
+        return D;
+    }
+
 
 
     //Vector2

@@ -48,8 +48,8 @@ public class Target : MonoBehaviour {
     public void Relocate()
     {
         //GetComponent<LerpTo>().targetPos = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-7.0f, 7.0f), Random.Range(-2.0f, 10.0f));
-        GetComponent<LerpTo>().targetPos = VectorMaths.Add(Goat.GetComponent<TRS>().position, VectorMaths.Normalized(VectorMaths.EulertoDir(new Vector3(Random.Range(0, Mathf.PI * 2), Random.Range(0, Mathf.PI * 2), Random.Range(0, Mathf.PI * 2)))) * 6);
-        //GetComponent<LerpTo>().targetRot = new Vector3(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
+        GetComponent<LerpTo>().targetPos = VectorMaths.Add(Goat.GetComponent<TRS>().position, VectorMaths.Normalized(VectorMaths.EulertoDir(new Vector3(Random.Range(0, Mathf.PI * 2), Random.Range(0, 360), Random.Range(0, 360)))) * 6);
+        GetComponent<LerpTo>().targetRot = new Vector3(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
         GetComponent<MeshRenderer>().material = Red;
         GoAgain.SetActive(false);
 
