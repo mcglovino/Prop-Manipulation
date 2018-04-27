@@ -9,11 +9,11 @@ public class TRS : MonoBehaviour
     MeshFilter MF;
 
     //X, Y, Z
-    public Vector3 scale = new Vector3(1, 1, 1);
+    public Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
     //X, Y, Z
-    public Vector3 position = new Vector3(0, 0, 0);
+    public Vector3 position = new Vector3(0.0f, 0.0f, 0.0f);
     //R, P, Y
-    public Vector3 rotation = new Vector3(0, 0, 0);
+    public Vector3 rotation = new Vector3(0.0f, 0.0f, 0.0f);
 
 
     void Start()
@@ -27,27 +27,27 @@ public class TRS : MonoBehaviour
     {
         Vector3[] TransformedVertices = new Vector3[ModelSpaceVertices.Length];
 
-        Matrix4by4 yawMatrix = new Matrix4by4(
-            new Vector3(Mathf.Cos(rotation.z), 0, -Mathf.Sin(rotation.z)),
-            new Vector3(0, 1, 0),
-            new Vector3(Mathf.Sin(rotation.z), 0, Mathf.Cos(rotation.z)),
+        Matrix4by4 rollMatrix = new Matrix4by4(
+            new Vector3(Mathf.Cos(rotation.z), Mathf.Sin(rotation.z), 0),
+            new Vector3(-Mathf.Sin(rotation.z), Mathf.Cos(rotation.z), 0),
+            new Vector3(0, 0, 1),
             Vector3.zero);
         Matrix4by4 pitchMatrix = new Matrix4by4(
-            new Vector3(1, 0, 0),
-            new Vector3(0, Mathf.Cos(rotation.y), Mathf.Sin(rotation.y)),
-            new Vector3(0, -Mathf.Sin(rotation.y), Mathf.Cos(rotation.y)),
-            Vector3.zero);
-        Matrix4by4 rollMatrix = new Matrix4by4(
-            new Vector3(Mathf.Cos(rotation.x), Mathf.Sin(rotation.x), 0),
-            new Vector3(-Mathf.Sin(rotation.x), Mathf.Cos(rotation.x), 0),
-            new Vector3(0, 0, 1),
+           new Vector3(1, 0, 0),
+           new Vector3(0, Mathf.Cos(rotation.x), Mathf.Sin(rotation.x)),
+           new Vector3(0, -Mathf.Sin(rotation.x), Mathf.Cos(rotation.x)),
+           Vector3.zero);
+        Matrix4by4 yawMatrix = new Matrix4by4(
+            new Vector3(Mathf.Cos(rotation.y), 0, -Mathf.Sin(rotation.y)),
+            new Vector3(0, 1, 0),
+            new Vector3(Mathf.Sin(rotation.y), 0, Mathf.Cos(rotation.y)),
             Vector3.zero);
 
         Matrix4by4 translateMatrix = new Matrix4by4(
             new Vector3(1, 0, 0),
             new Vector3(0, 1, 0),
             new Vector3(0, 0, 1),
-            new Vector3(position.x, position.y, position.z));
+            new Vector3(position.z, position.x, position.y));
         Matrix4by4 rotMatrix = yawMatrix * (pitchMatrix * rollMatrix);
         Matrix4by4 scaleMatrix = new Matrix4by4(
             new Vector3(1, 0, 0) * scale.x,
@@ -56,6 +56,9 @@ public class TRS : MonoBehaviour
             Vector3.zero);
 
         Matrix4by4 M = translateMatrix * (rotMatrix * scaleMatrix);
+
+        Debug.Log(translateMatrix.GetColumn(3));
+        Debug.Log(M.GetColumn(3));
 
         for (int i = 0; i < TransformedVertices.Length; i++)
         {

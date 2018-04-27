@@ -6,22 +6,22 @@ public class InputManager : MonoBehaviour {
 
     public GameObject Target;
 
-    public void rotX(string input)
+    public void rotRoll(string input)
     {
-        Target.GetComponent<TRS>().rotation.x = (float.Parse(input)/(180/Mathf.PI));
-        //Target.GetComponent<LerpTo>().targetRot.x = float.Parse(input);
+        //Target.GetComponent<TRS>().rotation.x = (float.Parse(input)/(180/Mathf.PI));
+        Target.GetComponent<LerpTo>().targetRot.x = float.Parse(input) / (180 / Mathf.PI);
         //Target.GetComponent<TRS>().rotation.x = Mathf.Lerp(transform.eulerAngles.x, float.Parse(input) / (180 / Mathf.PI), 0.25f);
     }
-    public void rotY(string input)
+    public void rotPitch(string input)
     {
-        Target.GetComponent<TRS>().rotation.y = (float.Parse(input) / (180 / Mathf.PI));
-        //Target.GetComponent<LerpTo>().targetRot.y = float.Parse(input);
+        //Target.GetComponent<TRS>().rotation.y = (float.Parse(input) / (180 / Mathf.PI));
+        Target.GetComponent<LerpTo>().targetRot.y = float.Parse(input) / (180 / Mathf.PI);
         //Target.GetComponent<TRS>().rotation.y = Mathf.Lerp(transform.eulerAngles.y, float.Parse(input) / (180 / Mathf.PI), 0.25f);
     }
-    public void rotZ(string input)
+    public void rotYaw(string input)
     {
-        Target.GetComponent<TRS>().rotation.z = (float.Parse(input) / (180 / Mathf.PI));
-        //Target.GetComponent<LerpTo>().targetRot.z = float.Parse(input);
+        //Target.GetComponent<TRS>().rotation.z = (float.Parse(input) / (180 / Mathf.PI));
+        Target.GetComponent<LerpTo>().targetRot.z = float.Parse(input) / (180 / Mathf.PI);
         //Target.GetComponent<TRS>().rotation.z = Mathf.Lerp(transform.eulerAngles.z, float.Parse(input) / (180 / Mathf.PI), 0.25f);
     }
 

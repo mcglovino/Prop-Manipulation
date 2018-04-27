@@ -10,13 +10,17 @@ public class LerpTo : MonoBehaviour
 
     void Start()
     {
-        targetPos = transform.position;
-        targetRot = transform.eulerAngles;
+        targetPos = GetComponent<TRS>().position;
+        targetRot = GetComponent<TRS>().rotation;
+        //targetPos = transform.position;
+        //targetRot = transform.eulerAngles;
     }
 
     void Update()
     {
-        transform.position = VectorMaths.Lerp(transform.position, targetPos);
+        GetComponent<TRS>().position = VectorMaths.Lerp(GetComponent<TRS>().position, targetPos);
+        GetComponent<TRS>().rotation = VectorMaths.Lerp(GetComponent<TRS>().rotation, targetRot);
+        //transform.position = VectorMaths.Lerp(transform.position, targetPos);
         //GetComponent<TRS>().rotation = VectorMaths.Lerp(transform.eulerAngles, VectorMaths.Divisor(targetRot, (180 / Mathf.PI)));
     }
 }

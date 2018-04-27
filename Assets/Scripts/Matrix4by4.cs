@@ -64,6 +64,17 @@ public class Matrix4by4
 
     public float[,] values;
 
+    public static Vector4 operator *(Matrix4by4 lhs, Vector3 vector)
+    {
+        Vector4 result;
+
+        result.x = (lhs.values[0, 0] * vector.x) + (lhs.values[0, 1] * vector.y) + (lhs.values[0, 2] * vector.z) + (lhs.values[0, 3] * 1);
+        result.y = (lhs.values[1, 0] * vector.x) + (lhs.values[1, 1] * vector.y) + (lhs.values[1, 2] * vector.z) + (lhs.values[1, 3] * 1);
+        result.z = (lhs.values[2, 0] * vector.x) + (lhs.values[2, 1] * vector.y) + (lhs.values[2, 2] * vector.z) + (lhs.values[2, 3] * 1);
+        result.w = (lhs.values[3, 0] * vector.x) + (lhs.values[3, 1] * vector.y) + (lhs.values[3, 2] * vector.z) + (lhs.values[3, 3] * 1);
+
+        return result;
+    }
     public static Vector4 operator *(Matrix4by4 lhs, Vector4 vector)
     {
         Vector4 result;
@@ -118,6 +129,40 @@ public class Matrix4by4
 
         return rv;
     }
+    public Vector4 GetRow(int row)
+    {
+        Vector4 rv;
+
+        rv.x = values[row, 0];
+        rv.y = values[row, 1];
+        rv.z = values[row, 2];
+        rv.w = values[row, 3];
+
+        return rv;
+    }
+
+    public Vector4 GetColumn(int column, Matrix4by4 matrix)
+    {
+        Vector4 rv;
+
+        rv.x = matrix.values[0, column];
+        rv.y = matrix.values[1, column];
+        rv.z = matrix.values[2, column];
+        rv.w = matrix.values[3, column];
+
+        return rv;
+    }
+    public Vector4 GetColumn(int column)
+    {
+        Vector4 rv;
+
+        rv.x = values[0, column];
+        rv.y = values[1, column];
+        rv.z = values[2, column];
+        rv.w = values[3, column];
+
+        return rv;
+    }
 
     public Matrix4by4 TranlateInverse(Matrix4by4 A)
     {
@@ -142,6 +187,18 @@ public class Matrix4by4
         A.values[2, 2] = 1 / values[2, 2];
 
         return A;
+    }
+
+    public static Matrix4by4 Identity
+    {
+        get
+        {
+            return new Matrix4by4(
+                new Vector4(1, 0, 0, 0),
+                new Vector4(0, 1, 0, 0),
+                new Vector4(0, 0, 1, 0),
+                new Vector4(0, 0, 0, 1));
+        }
     }
 }
 
