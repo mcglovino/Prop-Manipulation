@@ -30,6 +30,12 @@ public class VectorMaths
         return B;
     }
 
+    public static float Distance(Vector3 A, Vector3 B)
+    {
+        float C = Len(Sub(A, B));
+        return C;
+    }
+
     public static Vector3 Scalar(Vector3 A, float B)
     {
         Vector3 C = new Vector3((A.x * B), (A.y * B), (A.z * B));
@@ -111,6 +117,12 @@ public class VectorMaths
     {
         float B = (A.x * A.x) + (A.y * A.y);
         return B;
+    }
+
+    public static float Distance(Vector2 A, Vector2 B)
+    {
+        float C = Len(Sub(A, B));
+        return C;
     }
 
     public static Vector2 Scalar(Vector2 A, float B)

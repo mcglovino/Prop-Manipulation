@@ -57,9 +57,6 @@ public class TRS : MonoBehaviour
 
         Matrix4by4 M = translateMatrix * (rotMatrix * scaleMatrix);
 
-        Debug.Log(translateMatrix.GetColumn(3));
-        Debug.Log(M.GetColumn(3));
-
         for (int i = 0; i < TransformedVertices.Length; i++)
         {
             TransformedVertices[i] = M * ModelSpaceVertices[i];

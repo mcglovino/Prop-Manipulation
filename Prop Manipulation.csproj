@@ -285,6 +285,7 @@
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\LerpTo.cs" />
     <Compile Include="Assets\Scripts\Matrix4by4.cs" />
+    <Compile Include="Assets\Scripts\Target.cs" />
     <Compile Include="Assets\Scripts\TRS.cs" />
     <Compile Include="Assets\Scripts\VectorMaths.cs" />
   </ItemGroup>
