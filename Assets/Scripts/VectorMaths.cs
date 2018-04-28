@@ -108,6 +108,20 @@ public class VectorMaths
         return D;
     }
 
+    public static Vector3 AngleDifference(Vector3 Angle1, Vector3 Angle2)
+    {
+        Vector3 Difference = new Vector3();
+        Difference.x = Angle2.x - Angle1.x;
+        if (Difference.x > 180) Difference.x -= 360;
+        else if (Difference.x < -180) Difference.x += 360;
+        Difference.y = Angle2.y - Angle1.y;
+        if (Difference.y > 180) Difference.y -= 360;
+        else if (Difference.y < -180) Difference.y += 360;
+        Difference.z = Angle2.z - Angle1.z;
+        if (Difference.z > 180) Difference.z -= 360;
+        else if (Difference.z < -180) Difference.z += 360;
+        return Difference;
+    }
 
 
     //Vector2

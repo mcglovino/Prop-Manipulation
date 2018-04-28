@@ -15,13 +15,15 @@ public class Target : MonoBehaviour {
     }
 	
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Relocate();
         }
-        Debug.Log(VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position));
+        Debug.Log(Goat.GetComponent<TRS>().rotation);
 
-        if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 1)
+        Vector3 AndlgeDiffT = VectorMaths.AngleDifference(GetComponent<TRS>().rotation, Goat.GetComponent<TRS>().rotation);
+        if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 1
+            && AndlgeDiffT.x < 10 && AndlgeDiffT.y < 10 && AndlgeDiffT.z < 10)
         {
             GetComponent<MeshRenderer>().material = Green;
             GoAgain.SetActive(true);
