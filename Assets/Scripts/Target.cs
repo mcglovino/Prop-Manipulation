@@ -19,11 +19,8 @@ public class Target : MonoBehaviour {
         {
             Relocate();
         }
-        Debug.Log(Goat.GetComponent<TRS>().rotation);
 
-        Vector3 AndlgeDiffT = VectorMaths.AngleDifference(GetComponent<TRS>().rotation, Goat.GetComponent<TRS>().rotation);
-        if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 1
-            && AndlgeDiffT.x < 10 && AndlgeDiffT.y < 10 && AndlgeDiffT.z < 10)
+        if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 1)
         {
             GetComponent<MeshRenderer>().material = Green;
             GoAgain.SetActive(true);

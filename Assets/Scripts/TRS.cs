@@ -15,6 +15,8 @@ public class TRS : MonoBehaviour
     //R, P, Y
     public Vector3 rotation = new Vector3(0.0f, 0.0f, 0.0f);
 
+    public Quat rotateQuat = new Quat(0, new Vector3(0,0,0));
+
 
     void Start()
     {
@@ -25,6 +27,7 @@ public class TRS : MonoBehaviour
 
     void Update()
     {
+
         Vector3[] TransformedVertices = new Vector3[ModelSpaceVertices.Length];
 
         Matrix4by4 rollMatrix = new Matrix4by4(
@@ -55,11 +58,14 @@ public class TRS : MonoBehaviour
             new Vector3(0, 0, 1) * scale.z,
             Vector3.zero);
 
-        Matrix4by4 M = translateMatrix * (rotMatrix * scaleMatrix);
+        // Matrix4by4 M = translateMatrix * (rotMatrix * scaleMatrix);
+        Matrix4by4 M = translateMatrix * (rotateQuat.QuatToMatrix() * scaleMatrix);
 
         for (int i = 0; i < TransformedVertices.Length; i++)
         {
             TransformedVertices[i] = M * ModelSpaceVertices[i];
+           // TransformedVertices[i] = VectorMaths.RotateByQuat(TransformedVertices[i], rotateQuat);
+            //TransformedVertices[i] = translateMatrix * TransformedVertices[i];
         }
 
         MF.mesh.vertices = TransformedVertices;

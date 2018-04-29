@@ -18,9 +18,13 @@ public class LerpTo : MonoBehaviour
 
     void Update()
     {
+        Quat A = new Quat(targetRot.x, new Vector3(1, 0, 0));
+        Quat B = new Quat(targetRot.y, new Vector3(0, 1, 0));
+        Quat C = new Quat(targetRot.z, new Vector3(0, 0, 1));
+        Quat D = A * B * C;
         GetComponent<TRS>().position = VectorMaths.Lerp(GetComponent<TRS>().position, targetPos);
-        GetComponent<TRS>().rotation = VectorMaths.Lerp(GetComponent<TRS>().rotation, VectorMaths.Divisor(targetRot, (180 / Mathf.PI)));
-        //transform.position = VectorMaths.Lerp(transform.position, targetPos);
-        //GetComponent<TRS>().rotation = VectorMaths.Lerp(transform.eulerAngles, VectorMaths.Divisor(targetRot, (180 / Mathf.PI)));
+   
+        GetComponent<TRS>().rotateQuat = D;
+
     }
 }
