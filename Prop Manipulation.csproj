@@ -284,6 +284,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\LerpTo.cs" />
+    <Compile Include="Assets\Scripts\LookAt.cs" />
     <Compile Include="Assets\Scripts\Maths.cs" />
     <Compile Include="Assets\Scripts\Matrix4by4.cs" />
     <Compile Include="Assets\Scripts\Quat.cs" />

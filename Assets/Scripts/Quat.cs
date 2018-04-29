@@ -7,13 +7,6 @@ public class Quat
 
     public float w, x, y, z;
 
-    //For use without needing conversion, IE in inversion and multiplying by a vector
-    public Quat(Vector3 T)
-    {
-        x = T.x; y = T.y; z = T.z;
-        w = 0;
-    }
-
     public Quat(float Angle, Vector3 Axis)
     {
         float halfAngle = Angle / 2;
@@ -25,6 +18,13 @@ public class Quat
         x = Axis.x * Mathf.Sin(halfAngle);
         y = Axis.y * Mathf.Sin(halfAngle);
         z = Axis.z * Mathf.Sin(halfAngle);
+    }
+
+    //For use without needing conversion, IE in inversion and multiplying by a vector
+    public Quat(Vector3 T)
+    {
+        x = T.x; y = T.y; z = T.z;
+        w = 0;
     }
 
     public static Quat operator *(Quat lhs, Quat rhs)

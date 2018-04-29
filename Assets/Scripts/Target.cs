@@ -10,26 +10,31 @@ public class Target : MonoBehaviour {
     public Material Orange;
     public Material Green;
 
+    public float distance = 10;
+
     void Start () {
         GetComponent<MeshRenderer>().material = Green;
     }
 	
 	void Update () {
+        //can relocate without the button
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Relocate();
         }
 
         if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 1
-            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) < 5
-            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) > -5)
+            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) < 15
+            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) > -15
+            && VectorMaths.Distance(GetComponent<TRS>().scale, Goat.GetComponent<TRS>().scale) < 0.2f)
         {
             GetComponent<MeshRenderer>().material = Green;
             GoAgain.SetActive(true);
         }
         else if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 2.5f
             && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) < 20
-            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) > -20)
+            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) > -20
+            && VectorMaths.Distance(GetComponent<TRS>().scale, Goat.GetComponent<TRS>().scale) < 0.5f)
         {
             GetComponent<MeshRenderer>().material = Orange;
             GoAgain.SetActive(false);
@@ -40,22 +45,31 @@ public class Target : MonoBehaviour {
             GoAgain.SetActive(false);
         }
 
-        //keep it relocating in the screen space
-        if (GetComponent<TRS>().position.x > 12 || GetComponent<TRS>().position.x < -12
-            || GetComponent<TRS>().position.y > 7 || GetComponent<TRS>().position.y < -7
-            || GetComponent<TRS>().position.z > 10 || GetComponent<TRS>().position.z < -3)
-        {
-            Relocate();
-        }
-
-        Debug.Log(Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat));
+        //clamps it within the area
+        if (GetComponent<TRS>().position.x > 20)
+            GetComponent<TRS>().position.x = 20;
+        else if (GetComponent<TRS>().position.x < -20)
+            GetComponent<TRS>().position.x = -20;
+        if (GetComponent<TRS>().position.y > 20)
+            GetComponent<TRS>().position.y = 20;
+        else if (GetComponent<TRS>().position.y < -20)
+            GetComponent<TRS>().position.y = -20;
+        if (GetComponent<TRS>().position.z > 20)
+            GetComponent<TRS>().position.z = 20;
+        else if (GetComponent<TRS>().position.z < -20)
+            GetComponent<TRS>().position.z = -20;
     }
 
     public void Relocate()
     {
-        //GetComponent<LerpTo>().targetPos = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-7.0f, 7.0f), Random.Range(-2.0f, 10.0f));
-        GetComponent<LerpTo>().targetPos = VectorMaths.Add(Goat.GetComponent<TRS>().position, VectorMaths.Normalized(VectorMaths.EulertoDir(new Vector3(Random.Range(0, Mathf.PI * 2), Random.Range(0, 360), Random.Range(0, 360)))) * 6);
-        GetComponent<LerpTo>().targetRot = new Vector3(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
+        //spawns at a set distance away on a sphere around the main object
+        GetComponent<LerpTo>().targetPos = VectorMaths.Add(Goat.GetComponent<TRS>().position, VectorMaths.Normalized(VectorMaths.EulertoDir(new Vector3(Random.Range(0, Mathf.PI * 2), Random.Range(0, Mathf.PI * 2), Random.Range(0, Mathf.PI * 2)))) * distance);
+        GetComponent<LerpTo>().targetRot = new Vector3(Random.Range(-180.0f, 180.0f), Random.Range(-180.0f, 180.0f), Random.Range(-180.0f, 180.0f));
+        //only set random scale if the scale toggle is on
+        if (InputManager.scale == true)
+            GetComponent<LerpTo>().targetScale = new Vector3(Random.Range(0.5f, 3), Random.Range(0.5f, 3), Random.Range(0.5f, 3));
+        else
+            GetComponent<LerpTo>().targetScale = new Vector3(1, 1, 1);
         GetComponent<MeshRenderer>().material = Red;
         GoAgain.SetActive(false);
 
