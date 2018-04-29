@@ -30,7 +30,7 @@ public class TRS : MonoBehaviour
 
         Vector3[] TransformedVertices = new Vector3[ModelSpaceVertices.Length];
 
-        Matrix4by4 rollMatrix = new Matrix4by4(
+        /*Matrix4by4 rollMatrix = new Matrix4by4(
             new Vector3(Mathf.Cos(rotation.z), Mathf.Sin(rotation.z), 0),
             new Vector3(-Mathf.Sin(rotation.z), Mathf.Cos(rotation.z), 0),
             new Vector3(0, 0, 1),
@@ -44,14 +44,14 @@ public class TRS : MonoBehaviour
             new Vector3(Mathf.Cos(rotation.y), 0, -Mathf.Sin(rotation.y)),
             new Vector3(0, 1, 0),
             new Vector3(Mathf.Sin(rotation.y), 0, Mathf.Cos(rotation.y)),
-            Vector3.zero);
+            Vector3.zero);*/
 
         Matrix4by4 translateMatrix = new Matrix4by4(
             new Vector3(1, 0, 0),
             new Vector3(0, 1, 0),
             new Vector3(0, 0, 1),
             new Vector3(position.z, position.x, position.y));
-        Matrix4by4 rotMatrix = yawMatrix * (pitchMatrix * rollMatrix);
+        //Matrix4by4 rotMatrix = yawMatrix * (pitchMatrix * rollMatrix);
         Matrix4by4 scaleMatrix = new Matrix4by4(
             new Vector3(1, 0, 0) * scale.x,
             new Vector3(0, 1, 0) * scale.y,

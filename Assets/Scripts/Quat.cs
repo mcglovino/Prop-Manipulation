@@ -54,6 +54,33 @@ public class Quat
         z = A.z;
     }
 
+    public static float AngleDiff(Quat A, Quat B)
+    {
+        Quat C = A.Inverse()*B;
+
+        if (Maths.RadToDeg(C.GetAxisAngle().w) > 180)
+            return Maths.RadToDeg(C.GetAxisAngle().w) - 360;
+        else if(Maths.RadToDeg(C.GetAxisAngle().w) < -180)
+            return Maths.RadToDeg(C.GetAxisAngle().w) + 360;
+        else
+            return Maths.RadToDeg(C.GetAxisAngle().w);
+    }
+
+    public Vector4 GetAxisAngle()
+    {
+        Vector4 rv = new Vector4();
+
+        //Get half angle back
+        float halfAngle = Mathf.Acos(w);
+        rv.w = halfAngle * 2;
+        //get normal axis back
+        rv.x = x / Mathf.Sin(halfAngle);
+        rv.y = y/ Mathf.Sin(halfAngle);
+        rv.z = Mathf.Sin(halfAngle);
+        return rv;
+    }
+
+
     public Matrix4by4 QuatToMatrix()
     {
         float wx, wy, wz, xx, yy, yz, xy, xz, zz, x2, y2, z2;

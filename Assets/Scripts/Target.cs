@@ -20,12 +20,16 @@ public class Target : MonoBehaviour {
             Relocate();
         }
 
-        if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 1)
+        if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 1
+            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) < 5
+            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) > -5)
         {
             GetComponent<MeshRenderer>().material = Green;
             GoAgain.SetActive(true);
         }
-        else if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 2.5f)
+        else if (VectorMaths.Distance(GetComponent<TRS>().position, Goat.GetComponent<TRS>().position) < 2.5f
+            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) < 20
+            && Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat) > -20)
         {
             GetComponent<MeshRenderer>().material = Orange;
             GoAgain.SetActive(false);
@@ -36,12 +40,15 @@ public class Target : MonoBehaviour {
             GoAgain.SetActive(false);
         }
 
-        if (GetComponent<TRS>().position.x > 10 || GetComponent<TRS>().position.x < -10
+        //keep it relocating in the screen space
+        if (GetComponent<TRS>().position.x > 12 || GetComponent<TRS>().position.x < -12
             || GetComponent<TRS>().position.y > 7 || GetComponent<TRS>().position.y < -7
-            || GetComponent<TRS>().position.z > 10 || GetComponent<TRS>().position.z < -2)
+            || GetComponent<TRS>().position.z > 10 || GetComponent<TRS>().position.z < -3)
         {
             Relocate();
         }
+
+        Debug.Log(Quat.AngleDiff(GetComponent<TRS>().rotateQuat, Goat.GetComponent<TRS>().rotateQuat));
     }
 
     public void Relocate()

@@ -49,17 +49,17 @@ public class InputManager : MonoBehaviour {
         if (transRot)
         {
             if (Input.GetKey(KeyCode.W))
-                Target.GetComponent<LerpTo>().targetRot -= new Vector3(0, 0.1f, 0);
+                Target.GetComponent<LerpTo>().targetRot -= new Vector3(0, 0.05f, 0);
             if (Input.GetKey(KeyCode.S))
-                Target.GetComponent<LerpTo>().targetRot += new Vector3(0, 0.1f, 0);
+                Target.GetComponent<LerpTo>().targetRot += new Vector3(0, 0.05f, 0);
             if (Input.GetKey(KeyCode.A))
-                Target.GetComponent<LerpTo>().targetRot -= new Vector3(0.1f, 0, 0);
+                Target.GetComponent<LerpTo>().targetRot -= new Vector3(0, 0, 0.05f);
             if (Input.GetKey(KeyCode.D))
-                Target.GetComponent<LerpTo>().targetRot += new Vector3(0.1f, 0, 0);
+                Target.GetComponent<LerpTo>().targetRot += new Vector3(0, 0, 0.05f);
             if (Input.GetKey(KeyCode.E))
-                Target.GetComponent<LerpTo>().targetRot += new Vector3(0, 0, 0.1f);
+                Target.GetComponent<LerpTo>().targetRot -= new Vector3(0.05f, 0, 0);
             if (Input.GetKey(KeyCode.R))
-                Target.GetComponent<LerpTo>().targetRot -= new Vector3(0, 0, 0.1f);
+                Target.GetComponent<LerpTo>().targetRot += new Vector3(0.05f, 0, 0);
         }
         else
         {
