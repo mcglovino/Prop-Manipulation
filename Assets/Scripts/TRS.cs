@@ -20,6 +20,11 @@ public class TRS : MonoBehaviour
 
     void Start()
     {
+        GetMesh();
+    }
+    //so it can be called externally
+    public void GetMesh()
+    {
         MF = GetComponent<MeshFilter>();
 
         ModelSpaceVertices = MF.mesh.vertices;

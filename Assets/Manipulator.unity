@@ -3313,6 +3313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1126101508}
   - component: {fileID: 1126101507}
+  - component: {fileID: 1126101509}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -3338,9 +3339,9 @@ MonoBehaviour:
   roll: 0
   pitch: 0
   yaw: 0
-  scalex: 0
-  scaley: 0
-  scalez: 0
+  scalex: 1
+  scaley: 1
+  scalez: 1
   TRS: 0
 --- !u!4 &1126101508
 Transform:
@@ -3349,12 +3350,29 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1126101506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2929688, y: 4.267578, z: 18.370605}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1126101509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126101506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64abb4ff82bfa948a8a84421a9770f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main: {fileID: 1496343635}
+  target: {fileID: 1739953334}
+  goat: {fileID: 4300000, guid: 605fb8938b7b3954fbd7bb48f6b52018, type: 3}
+  wolf: {fileID: 4300000, guid: 1cbb9c89e46e5e049a7304fb6e2f1c71, type: 3}
+  deer: {fileID: 4300000, guid: 5045e3b67a5190f4ea6e8a2ebecf7ea0, type: 3}
+  gun: {fileID: 4300000, guid: 5eb90dfb02a93ea438be33770ab95556, type: 3}
 --- !u!1 &1158024539
 GameObject:
   m_ObjectHideFlags: 0
@@ -4218,6 +4236,7 @@ GameObject:
   - component: {fileID: 1496343636}
   - component: {fileID: 1496343639}
   - component: {fileID: 1496343640}
+  - component: {fileID: 1496343641}
   m_Layer: 0
   m_Name: goat
   m_TagString: Untagged
@@ -4267,20 +4286,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1496343635}
-  m_Mesh: {fileID: 4300000, guid: fe19935a256796c44bfd43d0a9a9a4c8, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 605fb8938b7b3954fbd7bb48f6b52018, type: 3}
 --- !u!4 &1496343638
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400006, guid: fe19935a256796c44bfd43d0a9a9a4c8, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1496343635}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1496343639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4309,6 +4328,20 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   targetRot: {x: 0, y: 0, z: 0}
   targetScale: {x: 0, y: 0, z: 0}
+--- !u!64 &1496343641
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1496343635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 605fb8938b7b3954fbd7bb48f6b52018, type: 3}
 --- !u!1 &1507113990
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,6 +5179,7 @@ GameObject:
   - component: {fileID: 1739953336}
   - component: {fileID: 1739953335}
   - component: {fileID: 1739953340}
+  - component: {fileID: 1739953341}
   m_Layer: 0
   m_Name: Targetgoat
   m_TagString: Untagged
@@ -5223,20 +5257,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739953334}
-  m_Mesh: {fileID: 4300000, guid: fe19935a256796c44bfd43d0a9a9a4c8, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 605fb8938b7b3954fbd7bb48f6b52018, type: 3}
 --- !u!4 &1739953339
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400006, guid: fe19935a256796c44bfd43d0a9a9a4c8, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739953334}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1739953340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5254,6 +5288,20 @@ MonoBehaviour:
   Orange: {fileID: 2100000, guid: 83209dcc835090e47b2d30e48c4e4b77, type: 2}
   Green: {fileID: 2100000, guid: 88b55fc4db055f244b0dabe6dc96d2f9, type: 2}
   distance: 7
+--- !u!64 &1739953341
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739953334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 605fb8938b7b3954fbd7bb48f6b52018, type: 3}
 --- !u!1 &1824779246
 GameObject:
   m_ObjectHideFlags: 0

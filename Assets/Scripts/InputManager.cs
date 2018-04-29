@@ -55,32 +55,32 @@ public class InputManager : MonoBehaviour {
 
     public void go()
     {
-        Target.GetComponent<LerpTo>().targetPos = new Vector3(x, y, z);
+        Target.GetComponent<LerpTo>().targetPos = new Vector3(x,y,z);
 
-        Target.GetComponent<LerpTo>().targetRot = new Vector3(roll, pitch, yaw);
+        Target.GetComponent<LerpTo>().targetRot = new Vector3(pitch, yaw, roll);
 
         Target.GetComponent<LerpTo>().targetScale = new Vector3(scalex, scaley, scalez);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.J))
             TRS = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.K))
             TRS = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.L))
             TRS = 2;
 
         if (TRS == 0)
         {
             if (Input.GetKey(KeyCode.W))
-                Target.GetComponent<LerpTo>().targetRot -= new Vector3(0, 0.05f, 0);
-            if (Input.GetKey(KeyCode.S))
-                Target.GetComponent<LerpTo>().targetRot += new Vector3(0, 0.05f, 0);
-            if (Input.GetKey(KeyCode.A))
                 Target.GetComponent<LerpTo>().targetRot -= new Vector3(0, 0, 0.05f);
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.S))
                 Target.GetComponent<LerpTo>().targetRot += new Vector3(0, 0, 0.05f);
+            if (Input.GetKey(KeyCode.A))
+                Target.GetComponent<LerpTo>().targetRot -= new Vector3(0, 0.05f, 0);
+            if (Input.GetKey(KeyCode.D))
+                Target.GetComponent<LerpTo>().targetRot += new Vector3(0, 0.05f, 0);
             if (Input.GetKey(KeyCode.E))
                 Target.GetComponent<LerpTo>().targetRot -= new Vector3(0.05f, 0, 0);
             if (Input.GetKey(KeyCode.R))
@@ -93,9 +93,9 @@ public class InputManager : MonoBehaviour {
             if (Input.GetKey(KeyCode.S))
                 Target.GetComponent<LerpTo>().targetPos -= new Vector3(0, 0.1f, 0);
             if (Input.GetKey(KeyCode.A))
-                Target.GetComponent<LerpTo>().targetPos -= new Vector3(0.1f, 0, 0);
-            if (Input.GetKey(KeyCode.D))
                 Target.GetComponent<LerpTo>().targetPos += new Vector3(0.1f, 0, 0);
+            if (Input.GetKey(KeyCode.D))
+                Target.GetComponent<LerpTo>().targetPos -= new Vector3(0.1f, 0, 0);
             if (Input.GetKey(KeyCode.E))
                 Target.GetComponent<LerpTo>().targetPos += new Vector3(0, 0, 0.1f);
             if (Input.GetKey(KeyCode.R))

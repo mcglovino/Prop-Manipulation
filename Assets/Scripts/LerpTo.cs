@@ -20,11 +20,14 @@ public class LerpTo : MonoBehaviour
 
     void Update()
     {
+
         Quat A = new Quat(targetRot.x, new Vector3(1, 0, 0));
         Quat B = new Quat(targetRot.y, new Vector3(0, 1, 0));
         Quat C = new Quat(targetRot.z, new Vector3(0, 0, 1));
         Quat D = A * B * C;
-        GetComponent<TRS>().position = VectorMaths.Lerp(GetComponent<TRS>().position, targetPos);
+
+        //tergetpos xyz switched after different models added and things went wierd
+        GetComponent<TRS>().position = VectorMaths.Lerp(GetComponent<TRS>().position, new Vector3(targetPos.y, targetPos.z, targetPos.x));
 
         //keeps scale within possible limits
         if (targetScale.x > 3)
