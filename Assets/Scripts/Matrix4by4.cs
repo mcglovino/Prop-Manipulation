@@ -2,8 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Define a 4x4 matrix
+/// multiplication opperators with other matricies and vectors
+/// getting rows and collumns
+/// inverting diferent types of matrix
+/// definition of identity matrix
+/// </summary>
+
 public class Matrix4by4
 {
+    //value array for matrix
+    public float[,] values;
+
+    //constructor
     public Matrix4by4(Vector4 column1, Vector4 column2, Vector4 column3, Vector4 column4)
     {
         values = new float[4, 4];
@@ -33,6 +45,7 @@ public class Matrix4by4
         values[3, 3] = column4.w;
 
     }
+    //overload constructor, fills in the last row
     public Matrix4by4(Vector3 column1, Vector3 column2, Vector3 column3, Vector3 column4)
     {
         values = new float[4, 4];
@@ -62,8 +75,7 @@ public class Matrix4by4
         values[3, 3] = 1;
     }
 
-    public float[,] values;
-
+    //multiplication opperator with a vector3 (w is set to a 1)
     public static Vector4 operator *(Matrix4by4 lhs, Vector3 vector)
     {
         Vector4 result;
@@ -75,6 +87,7 @@ public class Matrix4by4
 
         return result;
     }
+    //multiplication opperator with a vector4
     public static Vector4 operator *(Matrix4by4 lhs, Vector4 vector)
     {
         Vector4 result;
@@ -86,7 +99,8 @@ public class Matrix4by4
 
         return result;
     }
-
+    //multiplication opperator withanother matrix
+    //order is important
     public static Matrix4by4 operator *(Matrix4by4 lhs, Matrix4by4 rhs)
     {
         Matrix4by4 result = new Matrix4by4(
@@ -117,8 +131,8 @@ public class Matrix4by4
 
         return result;
     }
-
-    public Vector4 GetRow(int row, Matrix4by4 matrix)
+    //returns a row of any matrix
+    public static Vector4 GetRow(int row, Matrix4by4 matrix)
     {
         Vector4 rv;
 
@@ -129,6 +143,7 @@ public class Matrix4by4
 
         return rv;
     }
+    //returns row of this matrix
     public Vector4 GetRow(int row)
     {
         Vector4 rv;
@@ -140,8 +155,8 @@ public class Matrix4by4
 
         return rv;
     }
-
-    public Vector4 GetColumn(int column, Matrix4by4 matrix)
+    //returns column of any matrix
+    public static Vector4 GetColumn(int column, Matrix4by4 matrix)
     {
         Vector4 rv;
 
@@ -152,6 +167,7 @@ public class Matrix4by4
 
         return rv;
     }
+    //returns column of any matrix
     public Vector4 GetColumn(int column)
     {
         Vector4 rv;
@@ -163,8 +179,8 @@ public class Matrix4by4
 
         return rv;
     }
-
-    public Matrix4by4 TranlateInverse(Matrix4by4 A)
+    //Inverses a translate matrix
+    public Matrix4by4 TranslateInverse(Matrix4by4 A)
     {
         A.values[0, 3] = -values[0, 3];
         A.values[1, 3] = -values[1, 3];
@@ -172,14 +188,14 @@ public class Matrix4by4
 
         return A;
     }
-
+    //Inverses a rotation matrix
     public Matrix4by4 RotateInverse(Matrix4by4 A)
     {
         A = new Matrix4by4(GetRow(0, A), GetRow(1, A), GetRow(2, A), GetRow(3, A));
 
         return A;
     }
-
+    //translates a scale matrix
     public Matrix4by4 ScaleInverse(Matrix4by4 A)
     {
         A.values[0, 0] = 1 / values[0, 0];
@@ -188,7 +204,8 @@ public class Matrix4by4
 
         return A;
     }
-
+    //definition of an identity matrix
+    //used to multiply and keep the result the same
     public static Matrix4by4 Identity
     {
         get

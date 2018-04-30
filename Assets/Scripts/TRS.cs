@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Applies changes to the vertices of the models with matrix transformations
+/// </summary>
+
 public class TRS : MonoBehaviour
 {
 
@@ -22,7 +26,8 @@ public class TRS : MonoBehaviour
     {
         GetMesh();
     }
-    //so it can be called externally
+    //Gets the mesh and puts it into our own vector array for changing
+    //seperated so it can be called externall from change model script
     public void GetMesh()
     {
         MF = GetComponent<MeshFilter>();
@@ -32,9 +37,10 @@ public class TRS : MonoBehaviour
 
     void Update()
     {
-
+        //keep them the same length, with changes to the model etc
         Vector3[] TransformedVertices = new Vector3[ModelSpaceVertices.Length];
 
+        //Left over from when euler angles where in place
         /*Matrix4by4 rollMatrix = new Matrix4by4(
             new Vector3(Mathf.Cos(rotation.z), Mathf.Sin(rotation.z), 0),
             new Vector3(-Mathf.Sin(rotation.z), Mathf.Cos(rotation.z), 0),
@@ -63,18 +69,16 @@ public class TRS : MonoBehaviour
             new Vector3(0, 0, 1) * scale.z,
             Vector3.zero);
 
-        // Matrix4by4 M = translateMatrix * (rotMatrix * scaleMatrix);
+        //Scale, Rotate, and then translate
         Matrix4by4 M = translateMatrix * (rotateQuat.QuatToMatrix() * scaleMatrix);
 
+        //Make the changes t the mesh
         for (int i = 0; i < TransformedVertices.Length; i++)
         {
             TransformedVertices[i] = M * ModelSpaceVertices[i];
-           // TransformedVertices[i] = VectorMaths.RotateByQuat(TransformedVertices[i], rotateQuat);
-            //TransformedVertices[i] = translateMatrix * TransformedVertices[i];
         }
-
+        //apply the changes
         MF.mesh.vertices = TransformedVertices;
-
         MF.mesh.RecalculateNormals();
         MF.mesh.RecalculateBounds();
     }

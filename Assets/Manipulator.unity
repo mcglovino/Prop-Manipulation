@@ -4238,7 +4238,7 @@ GameObject:
   - component: {fileID: 1496343640}
   - component: {fileID: 1496343641}
   m_Layer: 0
-  m_Name: goat
+  m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5181,7 +5181,7 @@ GameObject:
   - component: {fileID: 1739953340}
   - component: {fileID: 1739953341}
   m_Layer: 0
-  m_Name: Targetgoat
+  m_Name: TargetObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5282,12 +5282,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ac5e7370e5b4a448f07095a40694aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Goat: {fileID: 1496343635}
+  Object: {fileID: 1496343635}
   GoAgain: {fileID: 1656175209}
   Red: {fileID: 2100000, guid: bc5b31531a9ded2459ccc95e8dedaa10, type: 2}
   Orange: {fileID: 2100000, guid: 83209dcc835090e47b2d30e48c4e4b77, type: 2}
   Green: {fileID: 2100000, guid: 88b55fc4db055f244b0dabe6dc96d2f9, type: 2}
   distance: 7
+  AngleThreshold: 20
+  DistanceThreshold: 1
+  ScaleThreshold: 0.2
 --- !u!64 &1739953341
 MeshCollider:
   m_ObjectHideFlags: 0
